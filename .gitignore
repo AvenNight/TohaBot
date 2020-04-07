@@ -1,1 +1,4 @@
-.rbenv-version
+
+.vs/
+bin/
+obj/
