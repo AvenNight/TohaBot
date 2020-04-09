@@ -3,13 +3,15 @@ using System.Collections.Generic;
 
 public static class BotSetting
 {
-    public static double SmileChance => 0.25;
+    public static double SmileChance => 0.15;
     public static double DaChance => 1;
-	public static (double Step1, double Step2) СoolChance => (0.1, 0.7);
+    public static double NetChance => 1;
+    public static double AntChance => 1;
+	public static (double Step1, double Step2) СoolChance => (0.08, 0.7);
 	public static (int Step1, int Step2) СoolLenght => (60, 150);
 	private static (int Step1, int Step2) delaySec => (2, 15);
-	public static double PhraseChance => 0.1;
-	public static double QuestionChance => 0.15;
+	public static double PhraseChance => 0.09;
+	public static double QuestionChance => 0.13;
 
 	public static readonly HashSet<string> HahaTriggers = new HashSet<string>
 		{
@@ -25,9 +27,41 @@ public static class BotSetting
 			"да",
 			"da",
 			"d@",
+			"да)",
+			"da)",
+			"да))",
+			"da))",
+			"d@)",
+			"да?",
+			"da?",
+			"d@!",
+			"да!",
+			"da!",
+			"d@!",
+		};
+
+	public static readonly HashSet<string> NetTriggers = new HashSet<string>
+		{
+			"нет",
+			"net",
+			"нет)",
+			"net)",
+			"нет))",
+			"net))",
+			"нет?",
+			"net?",
+			"нет!",
+			"net!",
+		};
+
+	public static readonly HashSet<string> AntTriggers = new HashSet<string>
+		{
+			"делать"
 		};
 
 	public static readonly string DaNa = "Хуй нннааааа!!!";
+	public static readonly string NetOtvet = "пидора ответ :)";
+	public static readonly string AntOtvet = "Муравью хуй приделать! :)))";
 
 	public static readonly string [] Phrases = new string[]
 		{
@@ -60,6 +94,7 @@ public static class BotSetting
 			"Я могу яйца сфотать и скинуть сюда, что бы вы блеванули. Потому что атака сообщений когда спишь",
 			"100%",
 			"100%",
+			"+",
 		};
 
 	public static int Delay => new Random().Next(delaySec.Step1 * 1000, delaySec.Step2 * 1000);

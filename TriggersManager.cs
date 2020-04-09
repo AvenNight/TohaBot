@@ -11,6 +11,8 @@ public static class TriggersManager
 	private static readonly ICommand cool = new Sticker(StickersID.Cool);
 	private static readonly ICommand question = new Sticker(StickersID.Question);
 	private static readonly ICommand nnnna = new Phrase(BotSetting.DaNa);
+	private static readonly ICommand net = new Phrase(BotSetting.NetOtvet);
+	private static readonly ICommand ant = new Phrase(BotSetting.AntOtvet);
 	private static readonly ICommand phrases = new RndPhrase();
 
 	private static readonly Random rnd = new Random();
@@ -23,8 +25,12 @@ public static class TriggersManager
 				await cool.Send(message);
 			if (SmileTriggered(message.Text))
 				await smile.Send(message);
-			if (DaTriggered(message.Text))
+			if (EndWordTriggered(message.Text, BotSetting.DaTriggers, BotSetting.DaChance))
 				await nnnna.Send(message);
+			if (EndWordTriggered(message.Text, BotSetting.NetTriggers, BotSetting.NetChance))
+				await net.Send(message);
+			if (EndWordTriggered(message.Text, BotSetting.AntTriggers, BotSetting.AntChance, true))
+				await ant.Send(message);
 			if (QuestionTriggered(message.Text))
 				await question.Send(message);
 			if (Proc(BotSetting.PhraseChance))
@@ -50,12 +56,16 @@ public static class TriggersManager
 			BotSetting.SmileChance);
 	}
 
-	private static bool DaTriggered(string text)
+	private static bool EndWordTriggered(string text, IEnumerable<string> triggers, double chance, bool contains = false)
 	{
-		return Triggered(text, 
-			(text, trigger) => text.Split().LastOrDefault().Equals(trigger, StringComparison.InvariantCultureIgnoreCase), 
-			BotSetting.DaTriggers, 
-			BotSetting.DaChance);
+		Func<string, string, bool> predicate = (text, trigger) => 
+			contains ?
+			text.Split().LastOrDefault().Contains(trigger, StringComparison.InvariantCultureIgnoreCase) :
+			text.Split().LastOrDefault().Equals(trigger, StringComparison.InvariantCultureIgnoreCase);
+		return Triggered(text,
+			predicate, 
+			triggers,
+			chance);
 	}
 
 	private static bool Triggered(string text, Func<string, string, bool> predicate, IEnumerable<string> triggers, double chance)
@@ -67,7 +77,7 @@ public static class TriggersManager
 				contains = true;
 				break;
 			}
-		return contains && Proc(BotSetting.DaChance);
+		return contains && Proc(chance);
 	}
 
 	private static bool Proc(double chance) => rnd.NextDouble() <= chance;
