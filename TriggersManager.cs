@@ -13,6 +13,7 @@ public static class TriggersManager
 	private static readonly ICommand nnnna = new Phrase(BotSetting.DaNa);
 	private static readonly ICommand net = new Phrase(BotSetting.NetOtvet);
 	private static readonly ICommand ant = new Phrase(BotSetting.AntOtvet);
+	private static readonly ICommand prikol = new Phrase(BotSetting.PrikolOtvet);
 	private static readonly ICommand phrases = new RndPhrase();
 
 	private static readonly Random rnd = new Random();
@@ -31,6 +32,8 @@ public static class TriggersManager
 				await net.Send(message);
 			if (EndWordTriggered(message.Text, BotSetting.AntTriggers, BotSetting.AntChance, true))
 				await ant.Send(message);
+			if (EndWordTriggered(message.Text, BotSetting.PrikolTriggers, BotSetting.PrikolChance, true))
+				await prikol.Send(message);
 			if (QuestionTriggered(message.Text))
 				await question.Send(message);
 			if (Proc(BotSetting.PhraseChance))
