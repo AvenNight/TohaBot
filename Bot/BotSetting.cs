@@ -8,8 +8,8 @@ public static class BotSetting
     public static double NetChance => 1;
     public static double AntChance => 1;
     public static double PrikolChance => 1;
-	public static (double Step1, double Step2) СoolChance => (0.08, 0.5);
-	public static (int Step1, int Step2) СoolLenght => (60, 160);
+	public static (double Step1, double Step2) СoolChance => (0.07, 0.4);
+	public static (int Step1, int Step2) СoolLenght => (70, 160);
 	private static (int Step1, int Step2) delaySec => (2, 15);
 	public static double PhraseChance => 0.08;
 	public static double QuestionChance => 0.13;
