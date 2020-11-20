@@ -95,7 +95,7 @@ public static class TriggersManager
 			{
 				var lastWord = text.Split().LastOrDefault();
 				var index = lastWord.IndexOf(trigger, StringComparison.InvariantCultureIgnoreCase) + trigger.Length;
-				var postfix = new string(lastWord.Skip(index).ToArray());
+				var postfix = new string(lastWord.Skip(index).ToArray()).Replace("?", string.Empty);
 				answer = string.Format(BotSetting.PrikolOtvet, BotSetting.PrikolUkol + postfix);
 				break;
 			}
