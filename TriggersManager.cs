@@ -33,7 +33,10 @@ public static class TriggersManager
 			if (EndWordTriggered(message.Text, BotSetting.AntTriggers, BotSetting.AntChance, true))
 				await ant.Send(message);
 			if (EndWordTriggered(message.Text, BotSetting.PrikolTriggers, BotSetting.PrikolChance, true))
-				await prikol.Send(message);
+			{
+				var pricol = new Phrase(GetAnswer(message.Text, BotSetting.PrikolTriggers));
+				await pricol.Send(message);
+			}
 			if (QuestionTriggered(message.Text))
 				await question.Send(message);
 			if (Proc(BotSetting.PhraseChance))
@@ -81,6 +84,22 @@ public static class TriggersManager
 				break;
 			}
 		return contains && Proc(chance);
+	}
+
+	public static string GetAnswer(string text, IEnumerable<string> triggers)
+	{
+		Func<string, string, bool> predicate = (text, trigger) => text.Contains(trigger, StringComparison.InvariantCultureIgnoreCase);
+		var answer = string.Empty;
+		foreach (var trigger in triggers)
+			if (predicate(text, trigger))
+			{
+				var lastWord = text.Split().LastOrDefault();
+				var index = lastWord.IndexOf(trigger, StringComparison.InvariantCultureIgnoreCase) + trigger.Length;
+				var postfix = new string(lastWord.Skip(index).ToArray());
+				answer = string.Format(BotSetting.PrikolOtvet, BotSetting.PrikolUkol + postfix);
+				break;
+			}
+		return answer;
 	}
 
 	private static bool Proc(double chance) => rnd.NextDouble() <= chance;

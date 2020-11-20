@@ -68,7 +68,8 @@ public static class BotSetting
 	public static readonly string DaNa = "Хуй нннааааа!!!";
 	public static readonly string NetOtvet = "пидора ответ :)";
 	public static readonly string AntOtvet = "Муравью хуй приделать! :)))";
-	public static readonly string PrikolOtvet = "Хуем за щеку укол :))";
+	public static readonly string PrikolOtvet = "Хуем за щеку {0} :))";
+	public static readonly string PrikolUkol = "укол";
 
 	public static readonly string [] Phrases = new string[]
 		{
