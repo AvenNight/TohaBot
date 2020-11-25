@@ -4,10 +4,10 @@ using System.Collections.Generic;
 public static class BotSetting
 {
     public static double SmileChance => 0.15;
-    public static double DaChance => 1;
-    public static double NetChance => 1;
-    public static double AntChance => 1;
-    public static double PrikolChance => 1;
+    public static double DaChance => 0.99;
+    public static double NetChance => 0.99;
+    public static double AntChance => 0.99;
+    public static double PrikolChance => 0.99;
 	public static (double Step1, double Step2) СoolChance => (0.07, 0.4);
 	public static (int Step1, int Step2) СoolLenght => (70, 160);
 	private static (int Step1, int Step2) delaySec => (2, 15);
