@@ -51,7 +51,7 @@ public static class BotSetting
 			"нет",
 			"net",
 			"нет)",
-			@"нет""",
+			@"""нет""",
 			"net)",
 			"нет))",
 			"net))",
