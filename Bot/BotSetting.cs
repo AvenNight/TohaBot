@@ -3,16 +3,28 @@ using System.Collections.Generic;
 
 public static class BotSetting
 {
-    public static double SmileChance => 0.15;
-    public static double DaChance => 0.99;
-    public static double NetChance => 0.99;
-    public static double AntChance => 0.99;
-    public static double PrikolChance => 0.99;
-	public static (double Step1, double Step2) СoolChance => (0.07, 0.4);
+    public static double SmileChance => 0.015;
+    public static double DaChance => 0.099;
+    public static double NetChance => 0.099;
+    public static double AntChance => 0.099;
+    public static double PrikolChance => 0.099;
+	public static (double Step1, double Step2) СoolChance => (0.007, 0.04);
 	public static (int Step1, int Step2) СoolLenght => (70, 160);
 	private static (int Step1, int Step2) delaySec => (2, 15);
-	public static double PhraseChance => 0.08;
-	public static double QuestionChance => 0.13;
+	public static double PhraseChance => 0.008;
+	public static double QuestionChance => 0.013;
+
+	// Original chances
+	//public static double SmileChance => 0.15;
+	//public static double DaChance => 0.99;
+	//public static double NetChance => 0.99;
+	//public static double AntChance => 0.99;
+	//public static double PrikolChance => 0.99;
+	//public static (double Step1, double Step2) СoolChance => (0.07, 0.4);
+	//public static (int Step1, int Step2) СoolLenght => (70, 160);
+	//private static (int Step1, int Step2) delaySec => (2, 15);
+	//public static double PhraseChance => 0.08;
+	//public static double QuestionChance => 0.13;
 
 	public static readonly HashSet<string> HahaTriggers = new HashSet<string>
 		{
